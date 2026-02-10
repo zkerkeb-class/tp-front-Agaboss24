@@ -1,0 +1,216 @@
+/* screens/Favorites.css */
+
+.favorites-container {
+    min-height: 100vh;
+    padding: 30px 20px;
+    position: relative;
+}
+
+/* Background animé */
+.favorites-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(255, 71, 87, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 203, 5, 0.15) 0%, transparent 50%);
+    animation: favBackground 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes favBackground {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.favorites-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Bouton retour */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    color: #bbb;
+    border: 2px solid #444;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #646cff, #4854d8);
+    color: white;
+    border-color: #646cff;
+    transform: translateX(-8px);
+    box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+}
+
+/* Header des favoris */
+.favorites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.favorites-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.favorites-count {
+    font-size: 2rem;
+    color: #666;
+}
+
+/* Contrôles de tri */
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 2px solid #444;
+}
+
+.sort-label {
+    color: #aaa;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sort-select {
+    background: #333;
+    color: white;
+    border: 2px solid #444;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.sort-select:hover {
+    border-color: #646cff;
+    background: #3a3a3a;
+}
+
+.sort-select:focus {
+    border-color: #646cff;
+    box-shadow: 0 0 15px rgba(100, 108, 255, 0.3);
+}
+
+/* Liste des favoris */
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    list-style: none;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* État vide */
+.empty-favorites {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    animation: heartPulse 2s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.empty-favorites h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.empty-favorites p {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.explore-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #646cff, #4854d8);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(100, 108, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .favorites-title {
+        font-size: 2.5rem;
+    }
+
+    .favorites-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sort-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+    }
+
+    .empty-favorites h2 {
+        font-size: 1.5rem;
+    }
+}

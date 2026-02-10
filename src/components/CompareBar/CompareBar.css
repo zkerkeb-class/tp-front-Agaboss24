@@ -1,0 +1,194 @@
+/* components/CompareBar/CompareBar.css */
+
+.compare-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-top: 3px solid #646cff;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.compare-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Info section */
+.compare-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.compare-count {
+    color: white;
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.compare-clear {
+    background: transparent;
+    border: 1px solid #ff4757;
+    color: #ff4757;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.compare-clear:hover {
+    background: #ff4757;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Pokémon sélectionnés */
+.compare-selected {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    justify-content: center;
+}
+
+.compare-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 16px;
+    border: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    animation: itemPop 0.3s ease-out;
+}
+
+@keyframes itemPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.compare-item:hover {
+    transform: translateY(-5px);
+    border-color: #646cff;
+    box-shadow: 0 8px 20px rgba(100, 108, 255, 0.4);
+}
+
+.compare-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.compare-item-remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background: #ff4757;
+    border: 2px solid #1a1a1a;
+    border-radius: 50%;
+    color: white;
+    font-weight: 900;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.compare-item-remove:hover {
+    background: #ff6b81;
+    transform: scale(1.2) rotate(90deg);
+}
+
+/* Bouton de comparaison */
+.compare-action-btn {
+    background: linear-gradient(135deg, #646cff, #4854d8);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+}
+
+.compare-action-btn:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(100, 108, 255, 0.6);
+}
+
+.compare-action-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .compare-bar-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .compare-selected {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .compare-item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .compare-item-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .compare-action-btn {
+        width: 100%;
+    }
+}

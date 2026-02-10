@@ -1,0 +1,328 @@
+/* screens/pokemonDetails.css - VERSION REDESIGN MODERNE */
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+    color: white;
+    position: relative;
+}
+
+/* Background animé */
+.details-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(100, 108, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 203, 5, 0.15) 0%, transparent 50%);
+    animation: detailsBackground 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes detailsBackground {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.details-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Bouton Retour amélioré */
+.back-btn {
+    align-self: flex-start;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    color: #bbb;
+    border: 2px solid #444;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #646cff, #4854d8);
+    color: white;
+    border-color: #646cff;
+    transform: translateX(-8px);
+    box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+}
+
+/* --- LA CARTE PRINCIPALE --- */
+.details-card {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 32px;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    border: 2px solid #333;
+    position: relative;
+    text-align: center;
+    padding-bottom: 40px;
+    animation: cardSlideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* En-tête coloré avec effet de vague */
+.details-header-bg {
+    height: 140px;
+    width: 100%;
+    opacity: 0.9;
+    position: relative;
+    overflow: hidden;
+}
+
+.details-header-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, #2a2a2a);
+}
+
+/* L'image qui chevauche l'en-tête */
+.details-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-top: -100px;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7));
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 10;
+    animation: imageFloat 3s ease-in-out infinite;
+}
+
+@keyframes imageFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.details-image:hover {
+    transform: scale(1.15) rotate(8deg);
+    filter: drop-shadow(0 20px 40px rgba(100, 108, 255, 0.6));
+}
+
+/* Titre et ID */
+.details-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: titleShine 3s ease-in-out infinite;
+}
+
+@keyframes titleShine {
+    0%, 100% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)); }
+    50% { filter: drop-shadow(0 4px 15px rgba(100, 108, 255, 0.6)); }
+}
+
+.details-id {
+    color: #666;
+    font-size: 1.3rem;
+    vertical-align: super;
+    font-weight: 700;
+}
+
+/* Badges de types améliorés */
+.types-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.type-badge {
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+.type-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --- BOUTONS D'ACTION REDESIGNÉS --- */
+.actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #ffcb05, #ffb300);
+    color: #333;
+}
+
+.btn-edit:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 203, 5, 0.5);
+    background: linear-gradient(135deg, #ffe066, #ffcb05);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ff5555, #dd3333);
+    color: white;
+}
+
+.btn-delete:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 85, 85, 0.5);
+    background: linear-gradient(135deg, #ff7777, #ff5555);
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+}
+
+.btn-save:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #555, #333);
+    color: white;
+}
+
+.btn-cancel:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(85, 85, 85, 0.5);
+}
+
+/* FORMULAIRE D'ÉDITION */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 50px;
+    animation: formSlideIn 0.4s ease-out;
+}
+
+@keyframes formSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.edit-input {
+    background: linear-gradient(135deg, #333, #222);
+    border: 2px solid #444;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.edit-input:focus {
+    border-color: #646cff;
+    box-shadow: 0 0 20px rgba(100, 108, 255, 0.3);
+    background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+    outline: none;
+}
+
+.edit-label {
+    text-align: left;
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: -10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .details-card {
+        max-width: 100%;
+        border-radius: 24px;
+    }
+
+    .details-title {
+        font-size: 2rem;
+    }
+
+    .details-image {
+        width: 180px;
+        height: 180px;
+        margin-top: -80px;
+    }
+
+    .edit-form {
+        padding: 20px;
+    }
+
+    .actions-container {
+        gap: 12px;
+    }
+
+    .action-btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+}

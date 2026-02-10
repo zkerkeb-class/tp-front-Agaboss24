@@ -1,44 +1,53 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
-import usePokemon from "../../hook/usePokemon";
-
+import { Link } from "react-router"; 
 import './index.css';
 import PokeTitle from "./pokeTitle";
 import PokeImage from "./pokeImage";
+import FavoriteButton from "../FavoriteButton";
+import CompareButton from "../CompareButton";
 
-const PokeCard = ({ pokemon }) => {
-    const {pokemonData, loading} = usePokemon(pokemon.url);
-    console.log('pokeData',pokemonData)
+const PokeCard = ({ pokemon, showFavoriteBtn = true, showCompareBtn = true }) => {
+    
+    const mainType = pokemon.type && pokemon.type.length > 0 
+        ? pokemon.type[0].toLowerCase() 
+        : 'normal';
 
+    // Utilise l'URL de la BDD si elle existe, sinon fallback sur l'image locale
+    const imageUrl = pokemon.image || `http://localhost:3000/assets/pokemons/${pokemon.id}.png`;
 
-    if (loading) {
-        return <p>Chargement du Pokémon...</p>;
-    }
-
+    // Petit helper pour raccourcir les noms
+    const formatStatName = (name) => {
+        const mapping = { 'HP': 'HP', 'Attack': 'Atk', 'Defense': 'Def', 'SpecialAttack': 'SpA', 'SpecialDefense': 'SpD', 'Speed': 'Speed' };
+        return mapping[name] || name;
+    };
 
     return (
-        <Link to={`/pokemonDetails/${encodeURIComponent(pokemon.url)}`}>
-        <div className="poke-card">
-            <div className={`poke-card-header poke-type-${pokemonData.types?.[0]?.type?.name}`}>
-                <PokeTitle name={pokemon.name} />
-            </div>
-            <div className="poke-image-background">
-                <PokeImage imageUrl={pokemonData.sprites?.other?.['official-artwork']?.front_default} />
-            </div>
-            <div>
+        <Link to={`/pokemonDetails/${pokemon.id}`} style={{ textDecoration: 'none' }}>
+            <div className="poke-card">
+                
+                {/* Bouton Comparer en haut à gauche */}
+                {showCompareBtn && <CompareButton pokemonId={pokemon.id} size="medium" />}
+                
+                {/* Bouton Favori en haut à droite */}
+                {showFavoriteBtn && <FavoriteButton pokemonId={pokemon.id} size="medium" />}
+                
+                <div className={`poke-card-header poke-type-${mainType}`}>
+                    <PokeTitle name={pokemon.name.french} />
+                </div>
 
-                {pokemonData.stats?.map((stat) => {
-                    return(
-                        <div className="poke-stat-row" key={stat.stat.name}>
-                            <span className={`poke-type-font poke-type-${stat.stat.name}`}>{stat.stat.name}</span>
+                <div className="poke-image-background">
+                    <PokeImage imageUrl={imageUrl} />
+                </div>
 
-                            <span className="poke-type-font poke-stat-value">{stat.base_stat}</span>
+                <div className="poke-stats-container">
+                    {Object.entries(pokemon.base).map(([statName, statValue]) => (
+                        <div className="poke-stat-row" key={statName}>
+                            <span>{formatStatName(statName)}</span>
+                            <span className="poke-stat-value">{statValue}</span>
                         </div>
-                    ) 
-                })}    
+                    ))}    
+                </div>
 
             </div>
-        </div>
         </Link>
     );
 }

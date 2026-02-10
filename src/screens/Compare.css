@@ -1,0 +1,291 @@
+/* screens/Compare.css */
+
+.compare-container {
+    min-height: 100vh;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.compare-empty {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    color: white;
+}
+
+/* Background animé */
+.compare-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(100, 108, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(76, 175, 80, 0.15) 0%, transparent 50%);
+    animation: compareBackground 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes compareBackground {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.compare-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Titre */
+.compare-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #646cff, #4caf50, #ff5555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Cartes de comparaison */
+.compare-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.compare-card {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 24px;
+    width: 320px;
+    padding: 25px;
+    border: 3px solid;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    animation: cardSlideIn 0.5s ease-out backwards;
+}
+
+.compare-card:nth-child(1) { animation-delay: 0.1s; }
+.compare-card:nth-child(2) { animation-delay: 0.2s; }
+.compare-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.compare-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.compare-card-header {
+    padding: 15px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.compare-card-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.compare-card-header span {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.compare-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    animation: imageFloat 3s ease-in-out infinite;
+}
+
+@keyframes imageFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.compare-types {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.type-badge {
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Stats */
+.compare-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.stat-row strong {
+    color: white;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
+
+.stat-row.total {
+    background: rgba(100, 108, 255, 0.2);
+    border-color: #646cff;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.stat-row.total strong {
+    color: #646cff;
+    font-size: 1.3rem;
+}
+
+/* Section Radar */
+.compare-radar-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.radar-section-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.radar-wrapper {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 24px;
+    padding: 40px;
+    border: 2px solid #333;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+}
+
+.compare-radar-canvas {
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+}
+
+/* Légende */
+.compare-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: white;
+}
+
+.legend-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .compare-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .compare-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .compare-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .radar-wrapper {
+        padding: 20px;
+    }
+
+    .compare-radar-canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .compare-legend {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Import des couleurs de types */
+.poke-type-normal { background: linear-gradient(135deg, #A8A878, #8a8a5c); }
+.poke-type-fire { background: linear-gradient(135deg, #F08030, #dd6610); }
+.poke-type-water { background: linear-gradient(135deg, #6890F0, #4870d0); }
+.poke-type-grass { background: linear-gradient(135deg, #78C850, #5ca830); }
+.poke-type-electric { background: linear-gradient(135deg, #F8D030, #e0b810); }
+.poke-type-ice { background: linear-gradient(135deg, #98D8D8, #78b8b8); }
+.poke-type-fighting { background: linear-gradient(135deg, #C03028, #a01018); }
+.poke-type-poison { background: linear-gradient(135deg, #A040A0, #802080); }
+.poke-type-ground { background: linear-gradient(135deg, #E0C068, #c0a048); }
+.poke-type-flying { background: linear-gradient(135deg, #A890F0, #8870d0); }
+.poke-type-psychic { background: linear-gradient(135deg, #F85888, #d83868); }
+.poke-type-bug { background: linear-gradient(135deg, #A8B820, #889800); }
+.poke-type-rock { background: linear-gradient(135deg, #B8A038, #988018); }
+.poke-type-ghost { background: linear-gradient(135deg, #705898, #503878); }
+.poke-type-dragon { background: linear-gradient(135deg, #7038F8, #5018d8); }
+.poke-type-dark { background: linear-gradient(135deg, #705848, #503828); }
+.poke-type-steel { background: linear-gradient(135deg, #B8B8D0, #9898b0); }
+.poke-type-fairy { background: linear-gradient(135deg, #EE99AC, #ce798c); }
