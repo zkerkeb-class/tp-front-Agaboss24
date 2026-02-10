@@ -143,7 +143,7 @@ const PokeList = () => {
             {/* Bouton Mes Favoris */}
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
                 <Link to="/favorites" className="nav-btn">
-                    ❤️ Mes Favoris
+                    Mes Favoris
                 </Link>
             </div>
 

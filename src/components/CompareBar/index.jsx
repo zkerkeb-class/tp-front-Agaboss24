@@ -48,7 +48,7 @@ const CompareBar = () => {
                     onClick={handleCompare}
                     disabled={count < 2}
                 >
-                    ⚔️ Comparer {count >= 2 ? `(${count})` : ''}
+                    Comparer {count >= 2 ? `(${count})` : ''}
                 </button>
 
             </div>

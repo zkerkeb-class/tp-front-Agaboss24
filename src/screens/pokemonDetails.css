@@ -143,7 +143,7 @@
     background-clip: text;
     color: transparent;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-    animation: titleShine 3s ease-in-out infinite;
+    animation: titleShine 3s ease-in-out;
 }
 
 @keyframes titleShine {
