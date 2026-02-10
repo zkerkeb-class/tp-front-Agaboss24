@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './App.css'
 import Pokelist from './components/pokelist'
+import CompareBar from './components/CompareBar'
 import { Link, useNavigate } from 'react-router'
 
 function App() {
@@ -22,9 +23,8 @@ function App() {
 
   return (
     <div>
-
-      <Link to="/pokemonDetails">Voir les détails du Pokémon</Link>
       <Pokelist></Pokelist>
+      <CompareBar />
     </div>
   )
 

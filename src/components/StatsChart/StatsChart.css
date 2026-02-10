@@ -1,0 +1,200 @@
+/* components/StatsChart/StatsChart.css - VERSION AMÉLIORÉE */
+
+.stats-chart-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border-radius: 20px;
+    margin: 20px 30px;
+    border: 1px solid rgba(100, 108, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* --- BARRES DE PROGRESSION --- */
+.stats-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stats-bars-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(100, 108, 255, 0.3);
+}
+
+.stats-title {
+    margin: 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.total-label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.total-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #646cff;
+    text-shadow: 0 0 10px rgba(100, 108, 255, 0.5);
+}
+
+.stat-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-bar-label {
+    min-width: 90px;
+    color: #ccc;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-bar-container {
+    flex: 1;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    overflow: visible;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 14px;
+    min-width: 45px; /* Pour toujours voir la valeur */
+}
+
+/* Animation au chargement */
+@keyframes fillBar {
+    from { width: 0; }
+}
+
+.stat-bar-fill {
+    animation: fillBar 1s ease-out;
+}
+
+.stat-bar-value {
+    color: white;
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 2;
+}
+
+.stat-bar-max {
+    position: absolute;
+    right: 8px;
+    color: #666;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* --- RADAR CHART --- */
+.stats-radar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.radar-title {
+    margin: 0 0 20px 0;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.radar-canvas-wrapper {
+    position: relative;
+    filter: drop-shadow(0 4px 12px rgba(100, 108, 255, 0.3));
+}
+
+.radar-canvas {
+    display: block;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .stats-chart-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+        margin: 20px 15px;
+    }
+
+    .stat-bar-label {
+        min-width: 70px;
+        font-size: 0.85rem;
+    }
+
+    .stats-title {
+        font-size: 1.1rem;
+    }
+
+    .total-value {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animation de brillance */
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.stat-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 14px;
+}
